@@ -17,7 +17,7 @@ module Usermanager
       g.assets true
       g.stylesheets true
       g.helper true
-      g.skip_routes true
+      g.skip_routes false
     end
     # Configuration for the application, engines, and railties goes here.
     #
