@@ -14,4 +14,5 @@ class User < ApplicationRecord
   enum role: ROLES.values
 
   validates :first_name, :last_name, :role, presence: true
+
 end
