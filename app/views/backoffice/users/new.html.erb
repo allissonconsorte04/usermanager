@@ -1,0 +1,5 @@
+<h1>Novo Usuário</h1>
+
+<%= form_with(model: @user, url: backoffice_users_path, method: :post) do |form| %>
+  <%= render 'form', form: form %>
+<% end %>

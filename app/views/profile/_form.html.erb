@@ -1,0 +1,48 @@
+<div>
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+  <div>
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+  <div>
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+
+  <div>
+      <p>
+        <label>My Avatar</label>
+        <%= image_tag(@user.avatar_url) if @user.avatar? %>
+        <%= form.file_field :avatar %>
+      </p>
+
+      <p>
+        <label>
+          <%= form.check_box :remove_avatar %>
+          Remove avatar
+        </label>
+      </p>
+  </div>
+
+  <div>
+    <%= form.label :role %>
+    <%= form.text_field :role %>
+  </div>
+
+  <div>
+    <%= form.submit 'Salvar' %>
+  </div>
+</div>
