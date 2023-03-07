@@ -1,50 +1,59 @@
 <div>
-  <div>
-    <%= form.label :email %>
-    <%= form.email_field :email %>
+  <div class="pt-2">
+    <%= form.label :email, class: 'form-label' %>
+    <%= form.email_field :email, class: 'form-control', id: 'email', placeholder: 'Ex.: name@example.com' %>
   </div>
   <% if @user.new_record? %>
-  <div>
-    <%= form.label :password %>
-    <%= form.password_field :password %>
+  <div class="pt-2">
+    <%= form.label :password, class: 'form-label' %>
+    <%= form.password_field :password, class: 'form-control', id: 'password' %>
   </div>
-  <div>
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
+  <div class="pt-2">
+    <%= form.label :password_confirmation, class: 'form-label' %>
+    <%= form.password_field :password_confirmation, class: 'form-control', id: 'password' %>
   </div>
   <% end %>
-  <div>
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
+  <div class="pt-2">
+    <%= form.label :first_name, class: 'form-label' %>
+    <%= form.text_field :first_name, class: 'form-control', id: 'first_name', placeholder: 'Ex.: João' %>
   </div>
 
-  <div>
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
+  <div class="pt-2">
+    <%= form.label :last_name, class: 'form-label' %>
+    <%= form.text_field :last_name, class: 'form-control', id: 'last_name', placeholder: 'Ex.: Silva' %>
+  </div>
+
+  <div class="pt-2">
+    <%= form.label :role, class: 'form-label' %>
+    <%= form.select :role, options_for_select([["Admin", "admin"], ["User", "user"]], @user.role), { prompt: 'Selecione um papel' }, class: 'custom-select' %>
   </div>
 
 
-  <div>
-      <p>
-        <label>My Avatar</label>
-        <%= image_tag(@user.avatar_url) if @user.avatar? %>
-        <%= form.file_field :avatar %>
-      </p>
 
-      <p>
-        <label>
-          <%= form.check_box :remove_avatar %>
-          Remove avatar
-        </label>
-      </p>
+
+<div style="pt-2; display: flex; justify-content: center; align-items: center; flex-direction: column">
+  <div style="margin-top: 25px; text-align: center;">
+    <label>My Avatar</label><br>
+    <%= image_tag(@user.avatar_url ? @user.avatar_url : 'no-profile-picture-icon', size: '200x200', class: 'rounded-circle') %><br>
+    <%= form.file_field :avatar, style: 'margin-top: 15px;' %>
   </div>
-
-  <div>
-    <%= form.label :role %>
-    <%= form.text_field :role %>
-  </div>
-
-  <div>
-    <%= form.submit 'Salvar' %>
+  <div style="margin-top: 25px; text-align: center;">
+    <label>
+      <%= form.check_box :remove_avatar %>
+      Remove avatar
+    </label>
   </div>
 </div>
+
+
+
+
+
+  <div class="pt-2" style="display: flex; justify-content: center;">
+    <%=  %>
+    <%= button_tag "Voltar", type: "button", class: "btn btn-secondary", onclick: "history.back();", style: "margin: 5px;" %>
+    <%= form.submit 'Salvar', class: 'btn btn-success', style: "margin: 5px;" %>
+  </div>
+</div>
+
+

@@ -1,5 +1,6 @@
-class ProfileController < ActionController::Base
+class ProfileController < ApplicationController
   before_action :authenticate_user!
+  before_action :redirect_user_by_role, only: [:index]
 
   def index
     @user = current_user
@@ -23,5 +24,12 @@ class ProfileController < ActionController::Base
   def profile_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :avatar, :role, :remove_avatar,
                                  :password_confirmation)
+  end
+
+  def redirect_user_by_role
+    case current_user.role
+    when 'admin'
+      redirect_to backoffice_users_path
+    end
   end
 end

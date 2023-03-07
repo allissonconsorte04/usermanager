@@ -1,3 +1,39 @@
-<%# Montar tela de perfil %>
-<%= @user.first_name %>
-<%= link_to 'Editar', edit_profile_index_path %>
+<%= form_with(model: @user, url: profile_index_path, method: :put) do |form| %>
+  <div class="container" style="height: 100%; padding-top: 2%;">
+    <div class="row">
+      <div class="col-md-12 mx-auto my-auto">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <div>Perfil</div>
+          </div>
+          <div class="card-body" style="flex-direction: row; display: flex;">
+            <div style="flex: 1;">
+              <div class="pt-2">
+                <%= form.label :email, class: 'form-label' %>
+                <%= form.email_field :email, class: 'form-control', id: 'email', placeholder: 'Ex.: name@example.com' %>
+              </div>
+              <div class="pt-2">
+                <%= form.label :first_name, class: 'form-label' %>
+                <%= form.text_field :first_name, class: 'form-control', id: 'first_name', placeholder: 'Ex.: João' %>
+              </div>
+              <div class="pt-2">
+                <%= form.label :last_name, class: 'form-label' %>
+                <%= form.text_field :last_name, class: 'form-control', id: 'last_name', placeholder: 'Ex.: Silva' %>
+              </div>
+            </div>
+            <div style="pt-2; display: flex; justify-content: center; align-items: center; flex-direction: column">
+              <div style="margin: 25px; text-align: center;">
+                <label>My Avatar</label><br>
+                <%= image_tag(@user.avatar_url ? @user.avatar_url : 'no-profile-picture-icon', size: '200x200', class: 'rounded-circle') %><br>
+              </div>
+            </div>
+
+          </div>
+            <div class="pt-2" style="display: flex; justify-content: center;">
+              <%= link_to 'Editar', edit_profile_index_path, class: 'btn btn-warning btn-sm', style: 'margin: 5px;' %>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

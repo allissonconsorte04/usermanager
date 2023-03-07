@@ -1,7 +1,7 @@
 module Backoffice
   class UsersController < BackofficeController
     def index
-      @users = User.all
+      @users = User.paginate(page: params[:page], per_page: 20)
       @total_users = User.count
       @admin_users = User.where(role: 'admin').count
       @regular_users = User.where(role: 'user').count
@@ -22,6 +22,7 @@ module Backoffice
 
     def edit
       @user = User.find(params[:id])
+      @avatar_url = @user.avatar_url.present? ? @user.avatar_url : ''
     end
 
     def update

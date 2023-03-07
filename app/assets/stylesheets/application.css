@@ -12,5 +12,50 @@
  *
  *= require_tree .
  *= require_self
- *= require bootstrap
+ require bootstrap
+ require will_paginate-bootstrap
  */
+
+.table-light td {
+  font-weight: normal;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination a,
+.pagination span {
+  padding: 6px 12px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.pagination .active a {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.pagination .disabled a,
+.pagination .disabled span {
+  background-color: #f5f5f5;
+  color: #ccc;
+  border-color: #ccc;
+}
+
+.total-users {
+  font-size: 0.8rem; /* Defina o tamanho desejado em pixels, rem ou outra unidade de medida */
+}
+
+.custom-select {
+  background-color: #f2f2f2;
+  color: #333;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  padding: 8px;
+  width: -webkit-fill-available;
+}
