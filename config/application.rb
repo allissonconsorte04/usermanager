@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module Usermanager
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.i18n.default_locale = :'pt-BR'
     config.load_defaults 7.0
 
     config.generators do |g|

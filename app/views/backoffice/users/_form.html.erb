@@ -1,58 +1,79 @@
 <div>
   <div class="pt-2">
     <%= form.label :email, class: 'form-label' %>
-    <%= form.email_field :email, class: 'form-control', id: 'email', placeholder: 'Ex.: name@example.com' %>
+    <%= form.email_field :email, class: 'form-control', id: 'email', placeholder: 'Ex.: name@example.com', readonly: action_name == 'show', required: true %>
   </div>
   <% if @user.new_record? %>
   <div class="pt-2">
     <%= form.label :password, class: 'form-label' %>
-    <%= form.password_field :password, class: 'form-control', id: 'password' %>
+    <%= form.password_field :password, class: 'form-control', id: 'password', required: true %>
   </div>
   <div class="pt-2">
     <%= form.label :password_confirmation, class: 'form-label' %>
-    <%= form.password_field :password_confirmation, class: 'form-control', id: 'password' %>
+    <%= form.password_field :password_confirmation, class: 'form-control', id: 'password', required: true %>
   </div>
   <% end %>
   <div class="pt-2">
     <%= form.label :first_name, class: 'form-label' %>
-    <%= form.text_field :first_name, class: 'form-control', id: 'first_name', placeholder: 'Ex.: João' %>
+    <%= form.text_field :first_name, class: 'form-control', id: 'first_name', placeholder: 'Ex.: João', readonly: action_name == 'show', required: true %>
   </div>
 
   <div class="pt-2">
     <%= form.label :last_name, class: 'form-label' %>
-    <%= form.text_field :last_name, class: 'form-control', id: 'last_name', placeholder: 'Ex.: Silva' %>
+    <%= form.text_field :last_name, class: 'form-control', id: 'last_name', placeholder: 'Ex.: Silva', readonly: action_name == 'show', required: true %>
   </div>
 
   <div class="pt-2">
-    <%= form.label :role, class: 'form-label' %>
-    <%= form.select :role, options_for_select([["Admin", "admin"], ["User", "user"]], @user.role), { prompt: 'Selecione um papel' }, class: 'custom-select' %>
+    <%= form.label 'Permissão', class: 'form-label' %>
+    <% if action_name != "show" %>
+      <%= form.select :role, options_for_select([["Admin", "admin"], ["User", "user"]], @user.role), { prompt: 'Selecione um papel' }, class: 'custom-select' %>
+    <% else %>
+      <%= form.text_field :role, class: 'form-control', id: 'role', value: @user.role.capitalize, readonly: true %>
+    <% end %>
   </div>
 
 
 
 
-<div style="pt-2; display: flex; justify-content: center; align-items: center; flex-direction: column">
-  <div style="margin-top: 25px; text-align: center;">
-    <label>My Avatar</label><br>
-    <%= image_tag(@user.avatar_url ? @user.avatar_url : 'no-profile-picture-icon', size: '200x200', class: 'rounded-circle') %><br>
-    <%= form.file_field :avatar, style: 'margin-top: 15px;' %>
+  <div style="pt-2; display: flex; justify-content: center; align-items: center; flex-direction: column">
+    <div style="margin-top: 25px; text-align: center;">
+      <label>Foto de Perfil</label><br>
+      <%= image_tag(@user.avatar_url ? @user.avatar_url : 'no-profile-picture-icon', size: '200x200', class: 'rounded-circle') %><br>
+      <% if action_name != 'show' %>
+      <%= form.file_field :avatar, style: 'margin-top: 15px;' %>
+      <% end %>
+    </div>
+    <% if action_name != 'show' %>
+    <div style="margin-top: 25px; text-align: center;">
+      <label>
+        <%= form.check_box :remove_avatar %>
+        Remove avatar
+      </label>
+    </div>
+    <% end %>
   </div>
-  <div style="margin-top: 25px; text-align: center;">
-    <label>
-      <%= form.check_box :remove_avatar %>
-      Remove avatar
-    </label>
+
+
+
+
+
+  <% if @user.errors.any? %>
+  <div style="display: flex; flex: 1; justify-content: center;">
+    <div class="alert alert-danger d-flex align-items-center" role="alert" style="width: 50%;">
+      <div style="flex: 1; justify-content: center; display: flex;">
+        <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
-
-
-
-
-
+  <% end %>
   <div class="pt-2" style="display: flex; justify-content: center;">
     <%=  %>
-    <%= button_tag "Voltar", type: "button", class: "btn btn-secondary", onclick: "history.back();", style: "margin: 5px;" %>
-    <%= form.submit 'Salvar', class: 'btn btn-success', style: "margin: 5px;" %>
+    <%= link_to "Voltar", backoffice_users_path, class: "btn btn-secondary", style: "margin: 5px;" %>
+    <% if action_name != "show" %>
+      <%= form.submit 'Salvar', class: 'btn btn-success', style: "margin: 5px;" %>
+    <% end %>
   </div>
 </div>
 

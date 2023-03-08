@@ -13,6 +13,10 @@ class User < ApplicationRecord
 
   enum role: ROLES.values
 
-  validates :first_name, :last_name, :role, presence: true
-
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :last_name, presence: true
+  validates :role, presence: true
+  validates :password, presence: true, confirmation: true, length: { minimum: 6 }, if: :new_record?
+  validates :password_confirmation, presence: true, if: :new_record?
 end

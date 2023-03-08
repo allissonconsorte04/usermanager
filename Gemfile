@@ -30,6 +30,7 @@ gem 'devise'
 gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 gem 'sass-rails'
 gem 'will_paginate-bootstrap'
+gem 'rails-i18n'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"

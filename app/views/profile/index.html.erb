@@ -10,20 +10,20 @@
             <div style="flex: 1;">
               <div class="pt-2">
                 <%= form.label :email, class: 'form-label' %>
-                <%= form.email_field :email, class: 'form-control', id: 'email', placeholder: 'Ex.: name@example.com' %>
+                <%= form.email_field :email, class: 'form-control', id: 'email', readonly: true %>
               </div>
               <div class="pt-2">
                 <%= form.label :first_name, class: 'form-label' %>
-                <%= form.text_field :first_name, class: 'form-control', id: 'first_name', placeholder: 'Ex.: João' %>
+                <%= form.text_field :first_name, class: 'form-control', id: 'first_name', readonly: true %>
               </div>
               <div class="pt-2">
                 <%= form.label :last_name, class: 'form-label' %>
-                <%= form.text_field :last_name, class: 'form-control', id: 'last_name', placeholder: 'Ex.: Silva' %>
+                <%= form.text_field :last_name, class: 'form-control', id: 'last_name', readonly: true %>
               </div>
             </div>
             <div style="pt-2; display: flex; justify-content: center; align-items: center; flex-direction: column">
               <div style="margin: 25px; text-align: center;">
-                <label>My Avatar</label><br>
+                <label>Foto de Perfil</label><br>
                 <%= image_tag(@user.avatar_url ? @user.avatar_url : 'no-profile-picture-icon', size: '200x200', class: 'rounded-circle') %><br>
               </div>
             </div>

@@ -31,7 +31,7 @@
 
 <div style="pt-2; display: flex; justify-content: center; align-items: center; flex-direction: column">
   <div style="margin-top: 25px; text-align: center;">
-    <label>My Avatar</label><br>
+    <label>Foto de Perfil</label><br>
     <%= image_tag(@user.avatar_url ? @user.avatar_url : 'no-profile-picture-icon', size: '200x200', class: 'rounded-circle') %><br>
     <%= form.file_field :avatar, style: 'margin-top: 15px;' %>
   </div>
@@ -48,7 +48,7 @@
 
 
   <div class="pt-2" style="display: flex; justify-content: center;">
-    <%= button_tag "Voltar", type: "button", class: "btn btn-secondary", onclick: "history.back();", style: "margin: 5px;" %>
+    <%= link_to "Voltar", profile_index_path, class: "btn btn-secondary", style: "margin: 5px;" %>
     <%= form.submit 'Salvar', class: 'btn btn-success', style: "margin: 5px;" %>
   </div>
 </div>

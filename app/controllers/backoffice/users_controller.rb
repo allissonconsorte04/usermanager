@@ -1,5 +1,7 @@
 module Backoffice
   class UsersController < BackofficeController
+    before_action :user_params, only: [:create]
+
     def index
       @users = User.paginate(page: params[:page], per_page: 20)
       @total_users = User.count
@@ -25,6 +27,10 @@ module Backoffice
       @avatar_url = @user.avatar_url.present? ? @user.avatar_url : ''
     end
 
+    def show
+      @user = User.find(params[:id])
+    end
+
     def update
       @user = User.find(params[:id])
       if @user.update(user_params)
@@ -44,7 +50,10 @@ module Backoffice
     private
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :avatar, :role, :remove_avatar)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirm, :avatar, :role,
+                                   :remove_avatar)
     end
+
+
   end
 end

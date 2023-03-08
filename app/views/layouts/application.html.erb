@@ -13,6 +13,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+
+    <% if user_signed_in? %>
+      <!-- cabeçalho personalizado para usuários logados -->
+      <div class="user-header">
+      </div>
+      <nav class="navbar bg-body-tertiary" style="background-color: gainsboro">
+        <div class="container-fluid">
+          <div>Bem-vindo, <%= current_user.first_name + ' ' + current_user.last_name %>!</div>
+          <%= button_to "Sair", destroy_user_session_path, method: :delete, class: "btn" %>
+        </div>
+      </nav>
+      <% end %>
   </head>
 
   <body style="height: 100%; background-color: #fbfcfc;">

@@ -1,7 +1,3 @@
-
-
-
-
 <div class="container" style="height: 100%;">
   <div class="row" style="height: 100%;">
     <div class="col-md-6 mx-auto my-auto">
@@ -11,7 +7,11 @@
         </div>
         <div class="card-body">
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
+            <% @user.errors.full_messages.each do |msg| %>
+          <div class="alert alert-danger pt-2">
+              <li><%= msg %></li>
+            </div>
+            <% end %>
             <div class="mb-3">
               <%= f.label :email, class: "form-label" %>
               <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "formGroupExampleInput", placeholder: "email@email.com" %>
@@ -37,6 +37,7 @@
               <%= f.text_field :last_name, class: 'form-control', id: 'last_name', placeholder: 'Ex.: Silva' %>
             </div>
             <div style="display: flex; justify-content: end;">
+              <%= button_tag "Voltar", type: "button", class: "btn btn-secondary", onclick: "history.back();", style: "margin-top: 15px; margin-right: 10px;" %>
               <button on type="submit" class="btn btn-primary", style="margin-top: 15px;">Sign up</button>
             </div>
           <% end %>
